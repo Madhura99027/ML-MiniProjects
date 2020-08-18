@@ -36,6 +36,11 @@ st.markdown(html, unsafe_allow_html=True)
 
 model=pickle.load(open('OLS.pkl','rb'))
 
+def predictfunc(x,y,z,w,q,t,l,g,f,s,i,e):
+	input=np.array([[x,y,z,w,q,t,l,g,f,s,i,e]]).reshape(1,-1).astype(np.float64)
+	final=model.predict(input)
+	return final
+
 
  
 	
@@ -60,15 +65,21 @@ def main():
 
 	if choices=="House Prediction":
 		st.subheader("Enter the following fields")
+
 		c=tuple([i for i in range(0,2)])
+
 		st.subheader(" Want DRIVEWAY? ( 1= yes ,0=No) ")
 		driveway= st.selectbox('',c)
+
 		st.subheader("Want Airco?(yes=1 , No=0) ")
 		airco= st.selectbox ('-', c )
+
 		st.subheader("Want preffered area?(yes=1 , No=0)")
 		prefarea= st.selectbox('--', c)
+
 		st.subheader("Want gashw?(yes=1 , No=0)")
 		gashw= st.selectbox('_', c)
+
 		st.subheader("Want fullbase?(yes=1 , No=0) ")
 		fullbase= st.selectbox('__' ,c)
 
@@ -117,11 +128,15 @@ def main():
 		st.subheader("Click below button for prediction") 
 
 		if st.button('predict'):
-			# output=predictfunc()
+			
+			output=predictfunc(lotsize, bathrms, 
+				driveway, fullbase, gashw, airco,
+				 garagepl, prefarea, stories_four, stories_two,
+				 stories_one, stories_three)
 
 		 
 		
-			# st.success('Your predicted Price is   {}'.format(output[0]))
+			st.success('Your predicted Price is   {}'.format(output[0]))
 			
 
 			st.write("yes!!!!!")

@@ -16,7 +16,7 @@ from sklearn.linear_model import LogisticRegression
 df = pd.read_csv("data.csv")
 
 #------------------------------------------------>
-#Cleaning, Standardization, Normalisation
+#Standardization
 lb = preprocessing.LabelBinarizer()
 
 df. driveway = lb.fit_transform(df.driveway)
@@ -27,12 +27,14 @@ df. airco = lb.fit_transform(df.airco)
 df. prefarea = lb.fit_transform(df.prefarea)
  
 #------------------------------------------------>
-#one hot encoding or Dummy variables
+#one hot encoding 
 df_stories = pd.get_dummies(df['stories'],prefix = 'stories')
 
 
 #------------------------------------------------>
-df = pd.concat([df, df_stories], axis = 1)   #axis= 1 means add column wise
+df = pd.concat([df, df_stories], axis = 1)   
+#here axis= 1 for  adding column wise
+
 del df['stories']
 
 y=df['price']
@@ -41,7 +43,7 @@ independent_variables = ['lotsize', 'bathrms', 'driveway', 'fullbase', 'gashw', 
 x = df[independent_variables]
 
 
-#splitting of dataset into training and validation set
+#splitting of dataset into
 validation_size = 0.30
 seed = 7
 X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(x, y, test_size=validation_size, random_state=seed)
