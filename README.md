@@ -1,3 +1,5 @@
 # ML-MiniProjects
 
-preview:https://streamlitiris.herokuapp.com/
+preview for IRIS prediction:https://streamlitiris.herokuapp.com/
+
+preview for kidney 
